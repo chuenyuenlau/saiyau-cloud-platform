@@ -19,11 +19,11 @@ import java.time.LocalDate;
 public class BaseEntity implements Serializable {
     @ApiModelProperty(value = "创建时间")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DatePattern.NORM_DATETIME_PATTERN, timezone = "GMT+8")
-    private LocalDate createdTime;
+    private LocalDate createTime;
 
     @ApiModelProperty(value = "修改时间")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DatePattern.NORM_DATETIME_PATTERN, timezone = "GMT+8")
-    private LocalDate updatedTime;
+    private LocalDate updateTime;
 
     @ApiModelProperty(value = "创建人id")
     private String createdUser;
