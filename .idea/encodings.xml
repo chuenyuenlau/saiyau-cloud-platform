@@ -3,19 +3,15 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/cloud-platform-admin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-platform-admin/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-platform-auth/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-platform-auth/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-platform-common/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-platform-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-platform-common/common-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-platform-common/common-log/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-platform-common/common-mybatis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-platform-common/common-swagger/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-platform-common/common-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-platform-gateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-platform-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-platform-generator/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-platform-monitor/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-platform-monitor/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-platform-redis/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-platform-redis/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cloud-platform-search/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cloud-platform-search/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

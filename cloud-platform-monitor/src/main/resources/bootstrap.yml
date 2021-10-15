@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: cloud-platform-saiyau-monitor
+  profiles:
+    active: local

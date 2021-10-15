@@ -1,0 +1,13 @@
+server:
+  port: 8101
+spring:
+  application:
+    name: cloud-platform-saiyau-monitor
+  security:
+    user:
+      name: admin
+      password: 123456
+  boot:
+    admin:
+      discovery:
+        ignored-services: ${spring.application.name}
