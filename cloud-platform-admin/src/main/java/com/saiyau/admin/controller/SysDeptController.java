@@ -2,8 +2,8 @@ package com.saiyau.admin.controller;
 
 
 import com.saiyau.admin.pojo.entity.SysDept;
-import com.saiyau.admin.pojo.vo.DeptVO;
-import com.saiyau.admin.pojo.vo.TreeSelectVO;
+import com.saiyau.admin.pojo.vo.DeptVo;
+import com.saiyau.admin.pojo.vo.TreeSelectVo;
 import com.saiyau.admin.service.SysDeptService;
 import com.saiyau.common.result.R;
 import io.swagger.annotations.Api;
@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,7 @@ import java.util.List;
 @Api(tags = "部门接口")
 @RestController
 @RequestMapping("/api/v1/depts")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SysDeptController {
     private final SysDeptService deptService;
 
@@ -37,14 +38,14 @@ public class SysDeptController {
     })
     @GetMapping("/table")
     public R getTableList(Integer status, String name) {
-        List<DeptVO> deptTableList = deptService.listTable(status, name);
+        List<DeptVo> deptTableList = deptService.listTable(status, name);
         return R.success(deptTableList);
     }
 
     @ApiOperation(value = "部门下拉（TreeSelect）层级列表")
     @GetMapping("/select")
     public R getSelectList() {
-        List<TreeSelectVO> deptSelectList = deptService.listTreeSelect();
+        List<TreeSelectVo> deptSelectList = deptService.listTreeSelect();
         return R.success(deptSelectList);
     }
 

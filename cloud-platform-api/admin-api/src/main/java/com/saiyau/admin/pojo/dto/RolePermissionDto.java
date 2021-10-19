@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class RolePermissionDTO {
+public class RolePermissionDto {
     private Long roleId;
     private List<Long> permissionIds;
     private Long menuId;

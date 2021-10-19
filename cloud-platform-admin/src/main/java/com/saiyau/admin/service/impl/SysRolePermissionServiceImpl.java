@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.saiyau.admin.mapper.SysRolePermissionMapper;
-import com.saiyau.admin.pojo.dto.RolePermissionDTO;
+import com.saiyau.admin.pojo.dto.RolePermissionDto;
 import com.saiyau.admin.pojo.entity.SysRolePermission;
 import com.saiyau.admin.service.SysRolePermissionService;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class SysRolePermissionServiceImpl extends ServiceImpl<SysRolePermissionM
     }
 
     @Override
-    public boolean update(RolePermissionDTO rolePermission) {
+    public boolean update(RolePermissionDto rolePermission) {
         boolean result = true;
         List<Long> permissionIds = rolePermission.getPermissionIds();
         Long menuId = rolePermission.getMenuId();

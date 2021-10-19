@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.saiyau.admin.pojo.entity.SysDept;
 import com.saiyau.admin.mapper.SysDeptMapper;
-import com.saiyau.admin.pojo.vo.DeptVO;
-import com.saiyau.admin.pojo.vo.TreeSelectVO;
+import com.saiyau.admin.pojo.vo.DeptVo;
+import com.saiyau.admin.pojo.vo.TreeSelectVo;
 import com.saiyau.admin.service.SysDeptService;
 import com.saiyau.common.constant.GlobalConstants;
 import org.apache.logging.log4j.util.Strings;
@@ -37,10 +37,10 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
      * @return
      */
     @Override
-    public List<DeptVO> listTable(Integer status, String name) {
+    public List<DeptVo> listTable(Integer status, String name) {
         List<SysDept> deptList = this.list(new LambdaQueryWrapper<SysDept>()
                 .orderByAsc(SysDept::getSort));
-        List<DeptVO> deptTableList = recursionTableList(GlobalConstants.ROOT_DEPT_ID, deptList);
+        List<DeptVo> deptTableList = recursionTableList(GlobalConstants.ROOT_DEPT_ID, deptList);
         return deptTableList;
     }
 
@@ -51,15 +51,15 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
      * @param deptList
      * @return
      */
-    public static List<DeptVO> recursionTableList(Long parentId, List<SysDept> deptList) {
-        List<DeptVO> deptTableList = new ArrayList<>();
+    public static List<DeptVo> recursionTableList(Long parentId, List<SysDept> deptList) {
+        List<DeptVo> deptTableList = new ArrayList<>();
         Optional.ofNullable(deptList).orElse(new ArrayList<>())
                 .stream()
                 .filter(dept -> dept.getParentId().equals(parentId))
                 .forEach(dept -> {
-                    DeptVO deptVO = new DeptVO();
+                    DeptVo deptVO = new DeptVo();
                     BeanUtil.copyProperties(dept, deptVO);
-                    List<DeptVO> children = recursionTableList(dept.getId(), deptList);
+                    List<DeptVo> children = recursionTableList(dept.getId(), deptList);
                     deptVO.setChildren(children);
                     deptTableList.add(deptVO);
                 });
@@ -73,12 +73,12 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
      * @return
      */
     @Override
-    public List<TreeSelectVO> listTreeSelect() {
+    public List<TreeSelectVo> listTreeSelect() {
         List<SysDept> deptList = this.list(new LambdaQueryWrapper<SysDept>()
                 .eq(SysDept::getStatus, GlobalConstants.STATUS_ACTIVE)
                 .orderByAsc(SysDept::getSort)
         );
-        List<TreeSelectVO> deptSelectList = recursionTreeSelectList(GlobalConstants.ROOT_DEPT_ID, deptList);
+        List<TreeSelectVo> deptSelectList = recursionTreeSelectList(GlobalConstants.ROOT_DEPT_ID, deptList);
         return deptSelectList;
     }
 
@@ -90,14 +90,14 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
      * @param deptList
      * @return
      */
-    public static List<TreeSelectVO> recursionTreeSelectList(long parentId, List<SysDept> deptList) {
-        List<TreeSelectVO> deptTreeSelectList = new ArrayList<>();
+    public static List<TreeSelectVo> recursionTreeSelectList(long parentId, List<SysDept> deptList) {
+        List<TreeSelectVo> deptTreeSelectList = new ArrayList<>();
         Optional.ofNullable(deptList).orElse(new ArrayList<>())
                 .stream()
                 .filter(dept -> dept.getParentId().equals(parentId))
                 .forEach(dept -> {
-                    TreeSelectVO treeSelectVO = new TreeSelectVO(dept.getId(), dept.getName());
-                    List<TreeSelectVO> children = recursionTreeSelectList(dept.getId(), deptList);
+                    TreeSelectVo treeSelectVO = new TreeSelectVo(dept.getId(), dept.getName());
+                    List<TreeSelectVo> children = recursionTreeSelectList(dept.getId(), deptList);
                     if (CollectionUtil.isNotEmpty(children)) {
                         treeSelectVO.setChildren(children);
                     }

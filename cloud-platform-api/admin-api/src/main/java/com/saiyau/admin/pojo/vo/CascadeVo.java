@@ -11,12 +11,12 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
-public class CascadeVO {
+public class CascadeVo {
 
     private Long value;
 
     private String label;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private List<CascadeVO> children;
+    private List<CascadeVo> children;
 }

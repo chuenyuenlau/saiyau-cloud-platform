@@ -12,6 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -57,6 +58,12 @@ public class SysRole extends BaseEntity {
     @ApiModelProperty(value = "状态：0-正常 1-禁用")
     @TableField("status")
     private Integer status;
+
+    @TableField(exist = false)
+    private List<Long> menuIds;
+
+    @TableField(exist = false)
+    private List<Long> permissionIds;
 
 
 }

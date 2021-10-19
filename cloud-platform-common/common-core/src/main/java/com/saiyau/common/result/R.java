@@ -22,7 +22,7 @@ public class R<T> {
         if (result) {
             return success();
         } else {
-            return falied();
+            return failed();
         }
     }
 
@@ -34,7 +34,7 @@ public class R<T> {
         return new R<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 
-    public static <T> R<T> falied() {
+    public static <T> R<T> failed() {
         return new R<>(ResultCode.SYSTEM_EXECUTION_ERROR.getCode(), ResultCode.SYSTEM_EXECUTION_ERROR.getMessage(), null);
     }
 

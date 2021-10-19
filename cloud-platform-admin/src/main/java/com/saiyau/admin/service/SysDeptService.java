@@ -2,8 +2,8 @@ package com.saiyau.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.saiyau.admin.pojo.entity.SysDept;
-import com.saiyau.admin.pojo.vo.DeptVO;
-import com.saiyau.admin.pojo.vo.TreeSelectVO;
+import com.saiyau.admin.pojo.vo.DeptVo;
+import com.saiyau.admin.pojo.vo.TreeSelectVo;
 
 import java.util.List;
 
@@ -23,14 +23,14 @@ public interface SysDeptService extends IService<SysDept> {
      * @param name
      * @return
      */
-    List<DeptVO> listTable(Integer status, String name);
+    List<DeptVo> listTable(Integer status, String name);
 
     /**
      * 部门树形下拉（TreeSelect）层级列表
      *
      * @return
      */
-    List<TreeSelectVO> listTreeSelect();
+    List<TreeSelectVo> listTreeSelect();
 
     /**
      * 新增/修改部门

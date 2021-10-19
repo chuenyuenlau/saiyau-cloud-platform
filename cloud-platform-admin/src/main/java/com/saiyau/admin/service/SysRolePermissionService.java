@@ -1,7 +1,7 @@
 package com.saiyau.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.saiyau.admin.pojo.dto.RolePermissionDTO;
+import com.saiyau.admin.pojo.dto.RolePermissionDto;
 import com.saiyau.admin.pojo.entity.SysRolePermission;
 
 import java.util.List;
@@ -17,5 +17,5 @@ import java.util.List;
 public interface SysRolePermissionService extends IService<SysRolePermission> {
     List<Long> listPermissionId(Long moduleId, Long roleId);
     List<Long> listPermissionId(Long roleId);
-    boolean update(RolePermissionDTO rolePermission);
+    boolean update(RolePermissionDto rolePermission);
 }

@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class RouteVO {
+public class RouteVo {
 
     private String path;
 
@@ -37,5 +37,5 @@ public class RouteVO {
         private String icon;
         private List<String> roles;
     }
-    private List<RouteVO> children;
+    private List<RouteVo> children;
 }

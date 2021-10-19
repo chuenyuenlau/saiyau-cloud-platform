@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class MenuVO extends BaseEntity {
+public class MenuVo extends BaseEntity {
 
     private Long id;
 
@@ -31,6 +31,6 @@ public class MenuVO extends BaseEntity {
     private String redirect;
 
     @JsonInclude(value = JsonInclude.Include.NON_NULL)
-    private List<MenuVO> children;
+    private List<MenuVo> children;
 
 }

@@ -7,10 +7,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.saiyau.admin.mapper.SysMenuMapper;
 import com.saiyau.admin.pojo.entity.SysMenu;
-import com.saiyau.admin.pojo.vo.MenuVO;
-import com.saiyau.admin.pojo.vo.RouteVO;
-import com.saiyau.admin.pojo.vo.SelectVO;
-import com.saiyau.admin.pojo.vo.TreeSelectVO;
+import com.saiyau.admin.pojo.vo.MenuVo;
+import com.saiyau.admin.pojo.vo.RouteVo;
+import com.saiyau.admin.pojo.vo.SelectVo;
+import com.saiyau.admin.pojo.vo.TreeSelectVo;
 import com.saiyau.admin.service.SysMenuService;
 import com.saiyau.common.constant.GlobalConstants;
 import org.springframework.cache.annotation.Cacheable;
@@ -37,13 +37,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @return
      */
     @Override
-    public List<MenuVO> listTable(String name) {
+    public List<MenuVo> listTable(String name) {
         List<SysMenu> menuList = this.list(
                 new LambdaQueryWrapper<SysMenu>()
                         .like(StrUtil.isNotBlank(name), SysMenu::getName, name)
                         .orderByAsc(SysMenu::getSort)
         );
-        List<MenuVO> tableList = recursionTableList(GlobalConstants.ROOT_MENU_ID, menuList);
+        List<MenuVo> tableList = recursionTableList(GlobalConstants.ROOT_MENU_ID, menuList);
         return tableList;
     }
 
@@ -55,15 +55,15 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @param menuList 菜单列表
      * @return
      */
-    private static List<MenuVO> recursionTableList(Long parentId, List<SysMenu> menuList) {
-        List<MenuVO> menuTableList = new ArrayList<>();
+    private static List<MenuVo> recursionTableList(Long parentId, List<SysMenu> menuList) {
+        List<MenuVo> menuTableList = new ArrayList<>();
         Optional.ofNullable(menuList).orElse(new ArrayList<>())
                 .stream()
                 .filter(menu -> menu.getParentId().equals(parentId))
                 .forEach(menu -> {
-                    MenuVO menuVO = new MenuVO();
+                    MenuVo menuVO = new MenuVo();
                     BeanUtil.copyProperties(menu, menuVO);
-                    List<MenuVO> children = recursionTableList(menu.getId(), menuList);
+                    List<MenuVo> children = recursionTableList(menu.getId(), menuList);
 
                     if (CollectionUtil.isNotEmpty(children)) {
                         menuVO.setChildren(children);
@@ -80,9 +80,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @return
      */
     @Override
-    public List<SelectVO> listSelect() {
+    public List<SelectVo> listSelect() {
         List<SysMenu> menuList = this.list(new LambdaQueryWrapper<SysMenu>().orderByAsc(SysMenu::getSort));
-        List<SelectVO> menuSelectList = recursionSelectList(GlobalConstants.ROOT_MENU_ID, menuList);
+        List<SelectVo> menuSelectList = recursionSelectList(GlobalConstants.ROOT_MENU_ID, menuList);
         return menuSelectList;
     }
 
@@ -94,14 +94,14 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @param menuList 菜单列表
      * @return
      */
-    private static List<SelectVO> recursionSelectList(Long parentId, List<SysMenu> menuList) {
-        List<SelectVO> menuSelectList = new ArrayList<>();
+    private static List<SelectVo> recursionSelectList(Long parentId, List<SysMenu> menuList) {
+        List<SelectVo> menuSelectList = new ArrayList<>();
         Optional.ofNullable(menuList).orElse(new ArrayList<>())
                 .stream()
                 .filter(menu -> menu.getParentId().equals(parentId))
                 .forEach(menu -> {
-                    SelectVO selectVO = new SelectVO(menu.getId(), menu.getName());
-                    List<SelectVO> children = recursionSelectList(menu.getId(), menuList);
+                    SelectVo selectVO = new SelectVo(menu.getId(), menu.getName());
+                    List<SelectVo> children = recursionSelectList(menu.getId(), menuList);
                     if (CollectionUtil.isNotEmpty(children)) {
                         selectVO.setChildren(children);
                     }
@@ -121,9 +121,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      */
     @Override
     @Cacheable(cacheNames = "system", key = "'routeList'")
-    public List<RouteVO> listRoute() {
+    public List<RouteVo> listRoute() {
         List<SysMenu> menuList = this.baseMapper.listRoute();
-        List<RouteVO> list = recursionRoute(GlobalConstants.ROOT_MENU_ID, menuList);
+        List<RouteVo> list = recursionRoute(GlobalConstants.ROOT_MENU_ID, menuList);
         return list;
     }
 
@@ -135,21 +135,21 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @param menuList 菜单列表
      * @return
      */
-    private List<RouteVO> recursionRoute(Long parentId, List<SysMenu> menuList) {
-        List<RouteVO> list = new ArrayList<>();
+    private List<RouteVo> recursionRoute(Long parentId, List<SysMenu> menuList) {
+        List<RouteVo> list = new ArrayList<>();
         Optional.ofNullable(menuList).ifPresent(menus -> menus.stream().filter(menu -> menu.getParentId().equals(parentId))
                 .forEach(menu -> {
-                    RouteVO routeVO = new RouteVO();
+                    RouteVo routeVO = new RouteVo();
                     routeVO.setName(menu.getId() + ""); // 根据name路由跳转 this.$router.push({path:xxx})
                     routeVO.setPath(menu.getPath()); // 根据path路由跳转 this.$router.push({name:xxx})
                     routeVO.setRedirect(menu.getRedirect());
                     routeVO.setComponent(menu.getComponent());
                     routeVO.setRedirect(menu.getRedirect());
-                    RouteVO.Meta meta = new RouteVO.Meta(menu.getName(), menu.getIcon(), menu.getRoles());
+                    RouteVo.Meta meta = new RouteVo.Meta(menu.getName(), menu.getIcon(), menu.getRoles());
                     routeVO.setMeta(meta);
                     // 菜单显示隐藏
                     routeVO.setHidden(!GlobalConstants.STATUS_ACTIVE.equals(menu.getStatus()));
-                    List<RouteVO> children = recursionRoute(menu.getId(), menuList);
+                    List<RouteVo> children = recursionRoute(menu.getId(), menuList);
                     routeVO.setChildren(children);
                     if (CollectionUtil.isNotEmpty(children)) {
                         routeVO.setAlwaysShow(Boolean.TRUE); // 显示子节点
@@ -166,9 +166,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @return
      */
     @Override
-    public List<TreeSelectVO> listTreeSelect() {
+    public List<TreeSelectVo> listTreeSelect() {
         List<SysMenu> menuList = this.list(new LambdaQueryWrapper<SysMenu>().orderByAsc(SysMenu::getSort));
-        List<TreeSelectVO> menuSelectList = recursionTreeSelectList(GlobalConstants.ROOT_MENU_ID, menuList);
+        List<TreeSelectVo> menuSelectList = recursionTreeSelectList(GlobalConstants.ROOT_MENU_ID, menuList);
         return menuSelectList;
     }
 
@@ -180,14 +180,14 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @param menuList 菜单列表
      * @return
      */
-    private static List<TreeSelectVO> recursionTreeSelectList(Long parentId, List<SysMenu> menuList) {
-        List<TreeSelectVO> menuSelectList = new ArrayList<>();
+    private static List<TreeSelectVo> recursionTreeSelectList(Long parentId, List<SysMenu> menuList) {
+        List<TreeSelectVo> menuSelectList = new ArrayList<>();
         Optional.ofNullable(menuList).orElse(new ArrayList<>())
                 .stream()
                 .filter(menu -> menu.getParentId().equals(parentId))
                 .forEach(menu -> {
-                    TreeSelectVO treeSelectVO = new TreeSelectVO(menu.getId(), menu.getName());
-                    List<TreeSelectVO> children = recursionTreeSelectList(menu.getId(), menuList);
+                    TreeSelectVo treeSelectVO = new TreeSelectVo(menu.getId(), menu.getName());
+                    List<TreeSelectVo> children = recursionTreeSelectList(menu.getId(), menuList);
                     if (CollectionUtil.isNotEmpty(children)) {
                         treeSelectVO.setChildren(children);
                     }

@@ -3,7 +3,7 @@ package com.saiyau.common.constant;
 /**
  * @author liuzhongyuan
  * @ClassName GlobalConstants.java
- * @Description TODO
+ * @Description 全局常量
  * @createTime 2021/10/18
  */
 public interface GlobalConstants {

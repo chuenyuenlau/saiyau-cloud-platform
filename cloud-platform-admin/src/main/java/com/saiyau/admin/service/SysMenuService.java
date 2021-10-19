@@ -2,10 +2,10 @@ package com.saiyau.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.saiyau.admin.pojo.entity.SysMenu;
-import com.saiyau.admin.pojo.vo.MenuVO;
-import com.saiyau.admin.pojo.vo.RouteVO;
-import com.saiyau.admin.pojo.vo.SelectVO;
-import com.saiyau.admin.pojo.vo.TreeSelectVO;
+import com.saiyau.admin.pojo.vo.MenuVo;
+import com.saiyau.admin.pojo.vo.RouteVo;
+import com.saiyau.admin.pojo.vo.SelectVo;
+import com.saiyau.admin.pojo.vo.TreeSelectVo;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param name 菜单名称
      * @return
      */
-    List<MenuVO> listTable(String name);
+    List<MenuVo> listTable(String name);
 
 
     /**
@@ -32,7 +32,7 @@ public interface SysMenuService extends IService<SysMenu> {
      *
      * @return
      */
-    List<SelectVO> listSelect();
+    List<SelectVo> listSelect();
 
 
     /**
@@ -40,13 +40,13 @@ public interface SysMenuService extends IService<SysMenu> {
      *
      * @return
      */
-    List<RouteVO> listRoute();
+    List<RouteVo> listRoute();
 
     /**
      * 菜单下拉(TreeSelect)层级列表
      *
      * @return
      */
-    List<TreeSelectVO> listTreeSelect();
+    List<TreeSelectVo> listTreeSelect();
 
 }

@@ -9,9 +9,9 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class SelectVO {
+public class SelectVo {
 
-    public SelectVO(Long value, String label) {
+    public SelectVo(Long value, String label) {
         this.value = value;
         this.label = label;
     }
@@ -21,6 +21,6 @@ public class SelectVO {
     private String label;
 
     @JsonInclude(value = JsonInclude.Include.NON_NULL)
-    private List<SelectVO> children;
+    private List<SelectVo> children;
 
 }

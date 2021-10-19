@@ -12,9 +12,9 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-public class TreeSelectVO {
+public class TreeSelectVo {
 
-    public TreeSelectVO(Long id, String label) {
+    public TreeSelectVo(Long id, String label) {
         this.id = id;
         this.label = label;
     }
@@ -24,6 +24,6 @@ public class TreeSelectVO {
     private String label;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private List<TreeSelectVO> children;
+    private List<TreeSelectVo> children;
 
 }
