@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: a8503209-9116-433e-9b44-341730d132b7
+        group: LOCAL_GROUP
+      config:
+        server-addr: localhost:8848
+        namespace: a8503209-9116-433e-9b44-341730d132b7
+        prefix: ${spring.application.name}
+        file-extension: yml
+        group: LOCAL_GROUP
