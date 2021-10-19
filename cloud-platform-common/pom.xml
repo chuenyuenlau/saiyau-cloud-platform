@@ -19,11 +19,11 @@
         <module>common-swagger</module>
     </modules>
 
-    <properties>
+    <!--<properties>
         <swagger.version>2.9.2</swagger.version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
         <swagger-models.version>1.5.22</swagger-models.version>
-        <mysql-connector.version>8.0.19</mysql-connector.version>
+        <mysql-connector.version>8.0.20</mysql-connector.version>
         <druid.version>1.2.6</druid.version>
         <mybatis-plus.version>3.4.3</mybatis-plus.version>
         <redisson.version>3.15.1</redisson.version>
@@ -34,27 +34,27 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- mysql -->
+            &lt;!&ndash; mysql &ndash;&gt;
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector.version}</version>
             </dependency>
 
-            <!-- druid -->
+            &lt;!&ndash; druid &ndash;&gt;
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
 
-            <!-- mybatis-plus -->
+            &lt;!&ndash; mybatis-plus &ndash;&gt;
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
-            <!-- redisson -->
+            &lt;!&ndash; redisson &ndash;&gt;
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson</artifactId>
@@ -75,7 +75,7 @@
 
 
         </dependencies>
-    </dependencyManagement>
+    </dependencyManagement>-->
 
 
 </project>

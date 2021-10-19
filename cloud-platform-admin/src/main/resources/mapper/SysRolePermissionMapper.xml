@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.saiyau.admin.mapper.SysRolePermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.saiyau.admin.pojo.entity.SysRolePermission">
+        <id column="id" property="id"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="role_id" property="roleId"/>
+        <result column="permission_id" property="permissionId"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, tenant_id, role_id, permission_id, is_deleted, create_time, update_time, create_user, update_user
+    </sql>
+
+    <select id="listPermissionId" resultType="long">
+        SELECT,
+        t1.permission_id ,
+        FROM,
+        sys_role_permission t1,
+        INNER JOIN sys_permission t2 ON t1.permission_id = t2.id ,
+        WHERE 1=1 ,
+        <if test='menuId !=null '>,
+            AND t2.menu_id = #{menuId} ,
+        </if>,
+        <if test='roleId !=null '>,
+            AND t1.role_id = #{roleId} ,
+        </if>,
+    </select>
+
+</mapper>

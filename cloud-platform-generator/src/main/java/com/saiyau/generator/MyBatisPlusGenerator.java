@@ -27,6 +27,7 @@ public class MyBatisPlusGenerator {
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
         help.append("请输入" + tip + ":");
+        System.out.println(help.toString());
         if (scanner.hasNext()) {
             String ipt = scanner.next();
             if (StrUtil.isNotBlank(ipt)) {
@@ -44,7 +45,8 @@ public class MyBatisPlusGenerator {
         GlobalConfig globalConfig = new GlobalConfig();
         //文件生成位置
         String projectPath = System.getProperty("user.dir");
-        globalConfig.setOutputDir(projectPath + "/src/main/java");
+        String outputDir = projectPath + "/src/main/java";
+        globalConfig.setOutputDir(outputDir);
         //是否覆盖文件
         globalConfig.setFileOverride(true);
         globalConfig.setAuthor("liuzhongyuan");
@@ -71,6 +73,7 @@ public class MyBatisPlusGenerator {
         globalConfig.setSwagger2(true);
         //date时间类型(默认LocalDateTime)
         //globalConfig.setDateType(DateType.ONLY_DATE);
+        autoGenerator.setGlobalConfig(globalConfig);
 
         //数据源配置
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
@@ -100,7 +103,7 @@ public class MyBatisPlusGenerator {
         //策略配置
         StrategyConfig strategyConfig = new StrategyConfig();
         //表名前缀
-        //strategyConfig.setTablePrefix("t_");
+        strategyConfig.setTablePrefix("t_");
         //表名生成策略
         strategyConfig.setEntityTableFieldAnnotationEnable(true);
         strategyConfig.setEntityLombokModel(true);
@@ -125,7 +128,7 @@ public class MyBatisPlusGenerator {
         };
         //自定义输出配置
         List<FileOutConfig> foList = new ArrayList<>();
-        foList.add(new FileOutConfig() {
+        foList.add(new FileOutConfig(templatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 return projectPath + "/src/main/resuorces/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
@@ -133,10 +136,12 @@ public class MyBatisPlusGenerator {
         });
         injectionConfig.setFileOutConfigList(foList);
         autoGenerator.setCfg(injectionConfig);
+
         TemplateConfig templateConfig = new TemplateConfig();
         templateConfig.setXml(null);
 
         autoGenerator.setTemplate(templateConfig);
+
         autoGenerator.setTemplateEngine(new FreemarkerTemplateEngine());
 
         autoGenerator.execute();
