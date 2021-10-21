@@ -49,4 +49,8 @@ public class R<T> {
     public static <T> R<T> failed(IResultCode resultCode, String msg) {
         return new R<>(resultCode.getCode(), msg, null);
     }
+
+    public static boolean isSuccess(R<?> result) {
+        return result != null && ResultCode.SUCCESS.getCode().equals(result.getCode());
+    }
 }

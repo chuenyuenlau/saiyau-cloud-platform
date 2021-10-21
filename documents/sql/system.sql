@@ -1,3 +1,20 @@
+# oauth2 客户端信息表
+DROP TABLE IF EXISTS `t_oauth_client_details`;
+CREATE TABLE `t_oauth_client_details` (
+    `client_id`               VARCHAR(255),
+    `resource_ids`            VARCHAR(255),
+    `client_secret`           VARCHAR(255),
+    `scope`                   VARCHAR(255),
+    `authorized_grant_types`  VARCHAR(255),
+    `web_server_redirect_uri` VARCHAR(255),
+    `authorities`             VARCHAR(255),
+    `access_token_validity`   int,
+    `refresh_token_validity`  int,
+    `additional_information`  VARCHAR(4096),
+    `autoapprove`             VARCHAR(255),
+    PRIMARY KEY (`client_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COMMENT 'oauth2 客户端信息表';
+
 # 用户表
 DROP TABLE IF EXISTS `t_sys_user`;
 CREATE TABLE `t_sys_user` (

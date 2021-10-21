@@ -2,6 +2,7 @@ package com.saiyau.auth.security.domain;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.saiyau.admin.pojo.dto.UserDto;
+import com.saiyau.admin.pojo.entity.SysUser;
 import com.saiyau.common.constant.GlobalConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,15 +51,15 @@ public class OauthUserDetails implements UserDetails {
      */
     private Collection<GrantedAuthority> authorities;
 
-    public OauthUserDetails(UserDto userDto){
-        this.id = userDto.getId();
-        this.clientId = userDto.getClientId();
-        this.username = userDto.getUsername();
-        this.password = userDto.getPassword();
-        this.enabled = GlobalConstants.STATUS_ACTIVE.equals(userDto.getStatus());
-        if(CollectionUtil.isNotEmpty(userDto.getRoles())){
+    public OauthUserDetails(SysUser sysUser){
+        this.id = sysUser.getId();
+        this.username = sysUser.getUsername();
+        this.tenantId = sysUser.getTenantId();
+        this.password = sysUser.getPassword();
+        this.enabled = GlobalConstants.STATUS_ACTIVE.equals(sysUser.getStatus());
+        if(CollectionUtil.isNotEmpty(sysUser.getRoles())){
             authorities = new ArrayList<>();
-            userDto.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
+            sysUser.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
         }
     }
 
