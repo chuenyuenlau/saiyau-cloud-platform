@@ -46,6 +46,7 @@
         <seata.version>1.4.1</seata.version>
         <commons-pool2-version>2.9.0</commons-pool2-version>
         <admin-starter-server.version>2.2.3</admin-starter-server.version>
+        <admin-starter-client.version>2.5.2</admin-starter-client.version>
         <nimbus-jose-jwt.version>9.10</nimbus-jose-jwt.version>
         <spring-cloud-starter-oauth2.version>2.2.2.RELEASE</spring-cloud-starter-oauth2.version>
         <redisson.version>3.15.1</redisson.version>
@@ -135,6 +136,11 @@
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-server</artifactId>
                 <version>${admin-starter-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-client</artifactId>
+                <version>${admin-starter-client.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.minio</groupId>

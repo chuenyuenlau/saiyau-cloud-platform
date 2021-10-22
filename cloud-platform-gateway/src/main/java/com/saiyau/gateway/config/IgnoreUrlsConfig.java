@@ -14,10 +14,17 @@ import java.util.List;
  */
 @Component
 @ConfigurationProperties(prefix = "secure.ignore")
-@Data
 public class IgnoreUrlsConfig {
     /**
      * 白名单url列表
      */
     private List<String> urls;
+
+    public List<String> getUrls() {
+        return urls;
+    }
+
+    public void setUrls(List<String> urls) {
+        this.urls = urls;
+    }
 }

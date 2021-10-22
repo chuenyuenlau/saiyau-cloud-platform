@@ -18,10 +18,10 @@ spring:
             - StripPrefix=1
         - id: cloud-platform-admin
           uri: lb://cloud-platform-admin #后台管理
-            predicates:
-              - Path=/cloud-platform-admin/**
-            filters:
-              - StripPrefix=1
+          predicates:
+            - Path=/cloud-platform-admin/**
+          filters:
+            - StripPrefix=1
   redis:
     host: localhost
     port: 6379

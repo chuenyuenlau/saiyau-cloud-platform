@@ -1,5 +1,5 @@
 spring:
   application:
-    name: cloud-platform-saiyau-monitor
+    name: cloud-platform-monitor
   profiles:
     active: local
