@@ -9,6 +9,16 @@ spring:
     database: 1
     password: saiyau
     timeout: 3000ms
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        maxactive: 64
+        # 连接池中的最大空闲连接
+        maxidle: 64
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        maxwait: -1
+        # 连接池中的最小空闲连接
+        minidle: 1
 # 监控配置
 management:
   endpoints:

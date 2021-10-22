@@ -11,3 +11,7 @@ spring:
         prefix: ${spring.application.name}
         file-extension: yml
         group: LOCAL_GROUP
+        # 公共配置
+        shared-configs:
+          - dataId: cloud-platform-common.yml
+            refresh: true

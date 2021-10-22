@@ -1,0 +1,6 @@
+gateway:
+  url: http://localhost:8201
+auth:
+  uri: oauth/token
+oauth:
+  passwordTokenUrl: ${gateway.url}/${auth.uri}

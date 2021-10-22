@@ -34,7 +34,7 @@ public interface AuthConstants {
     String JWT_JTI = "jti";
 
     /**
-     * JWT ID 唯一标识
+     * JWT 过期标识
      */
     String JWT_EXP = "exp";
 

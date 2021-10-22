@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: cloud-platform-gateway
+  profiles:
+    active: local
