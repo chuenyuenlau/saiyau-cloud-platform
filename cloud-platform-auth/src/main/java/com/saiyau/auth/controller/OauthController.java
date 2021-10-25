@@ -9,15 +9,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.security.KeyPair;
@@ -28,17 +26,17 @@ import java.util.Map;
 /**
  * @author liuzhongyuan
  * @ClassName OauthController.java
- * @Description TODO
+ * @Description 认证模块前端控制器
  * @createTime 2021/10/22
  */
 @Api(tags = "认证接口")
 @RestController
 @RequestMapping("/oauth")
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Slf4j
 public class OauthController {
     private final TokenEndpoint tokenEndpoint;
-    private KeyPair keyPair;
+    private final KeyPair keyPair;
 
     @ApiOperation(value = "OAuth2认证", notes = "login")
     @ApiImplicitParams({
@@ -72,6 +70,7 @@ public class OauthController {
     }
 
     @ApiOperation(value = "获取公钥", notes = "login")
+    @GetMapping("/rsa/getPublicKey")
     public Map<String, Object> getPublicKey() {
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         RSAKey key = new RSAKey.Builder(publicKey).build();
